@@ -1,0 +1,49 @@
+
+body{
+  background-image: url("../img/fondoIronHack.png");
+}
+
+div {
+  text-align: left;
+  margin-left: 50px;
+}
+
+canvas {
+  text-align: center;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+.container-winner {
+/* background-image: url("../img/fondoIronHack.png"); */
+background-color: black;
+width: 100%;
+height: 100%;
+}
+
+.giphy-embed {
+  text-align: center;
+  margin-top: 200px;
+}
+
+#ballTurn{
+  font-size: 22px;
+  color: white;
+  background-color: black;
+  border: 4px solid red;
+
+}
+#score1{
+  background-color: blue;
+  font-size: 20px;
+  color: white;
+
+}
+
+#score2{
+  background-color: yellow;
+  font-size: 20px;
+  color: black;
+}

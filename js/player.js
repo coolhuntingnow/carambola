@@ -8,7 +8,3 @@
     this.hitWhiteBall = false;
     this.hitTheOtherBall = false;
   };
-
-
-
-  

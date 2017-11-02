@@ -15,7 +15,7 @@ Ball = function(i) {
   this.tableFriction = tableFriction; //UNA CONSTANTE DEFINIDA GLOBALMENTE AL INICIO
   this.c = colors[i]; //ASIGNAR A CADA BOLA UN COLOR UNIVOCO
   this.index = i; // NUMERO PARA IDENTIFICAR A LAS BOLAS UNIVOCAMENTE
-}
+};
 
 
 //METODO PARA QUE DIBUJE LAS BOLAS
@@ -100,11 +100,12 @@ Ball.prototype.Strike = function(xImpact, yImpact) {
     players[i].hitWhiteBall = false;
     players[i].hitTheOtherBall = false;
   }
-  console.log('TURNO 1' + turn1);
   this.xVelocity += xImpact;
   this.yVelocity += yImpact;
-  strike = true
-  strikeBall = this
+  strike = true;
+  played = true;
+  strikeBall = this;
+
 };
 
 // CAMBIO DE VELOCIDAD EN LA COLISION DE LAS BOLAS (Caja Negra!!)
@@ -141,33 +142,66 @@ Ball.prototype.TestImpact = function() {
 
     //THIS = BOLA CON LA QUE SE DISPAEA  BALL= BOLA CON LA QUE COLISIONA
     CollideBalls(this, ball);
-    console.log('EN TEST IMPACT: ', this)
+    console.log('EN TEST IMPACT: ', this);
 
-    this._checkCarambola(ball)
+     if (!turn1) {
+      this._checkCarambolaP2(ball);
+      break; //PARA QUE NO ANOTE PUNTOS UNA VEZ QUE SE HA HECHO CARAMBOLA
+      }
+    else if (turn1) {
+    this._checkCarambolaP1(ball);
+    break; //PARA QUE NO ANOTE PUNTOS UNA VEZ QUE SE HA HECHO CARAMBOLA
   }
+}
+
+
+// CHEQUEAR SI SE HACE CARAMBOLA PLAYER 1
+Ball.prototype._checkCarambolaP1 = function(ball) {
+  //VERIFICAR QUE SE HACE CARAMBOLA
+
+  if (turn1 && this.c === 'blue' && ball.c === 'yellow') players[0].hitTheOtherBall = true;
+  if (turn1 && this.c === 'blue' && ball.c === 'white') players[0].hitWhiteBall = true;
+  if (turn1 && this.c === 'blue' && players[0].hitTheOtherBall && players[0].hitWhiteBall && played) {
+    players[0].myPoints+=1; //SUMA PUNTOS CON LAS CARAMBOLAS
+    document.getElementById("score1").innerHTML = players[0].myPoints;
+    turn1 = true;
+    console.log('CARAMBOLA');
+    alert ("CARAMBOLAAAAAAAAAA!!!! BIEN HECHO! VUELVE A TIRAR JUGADOR AZUL!");
+    console.log('Puntos P1' + players[0].myPoints);
+    played = false;
+  }
+  };
+
+  // CHEQUEAR SI SE HACE CARAMBOLA PLAYER 2
+  Ball.prototype._checkCarambolaP2 = function(ball) {
+
+    //VERIFICAR QUE SE HACE CARAMBOLA
+    if (!turn1 && this.c === 'yellow' && ball.c === 'blue') players[1].hitTheOtherBall = true;
+    if (!turn1 && this.c === 'yellow' && ball.c === 'white') players[1].hitWhiteBall = true;
+    if (!turn1 && this.c === 'yellow' && players[1].hitTheOtherBall && players[1].hitWhiteBall) {
+      players[1].myPoints++; //SUMA PUNTOS CON LAS CARAMBOLAS
+      document.getElementById("score2").innerHTML = players[1].myPoints;
+      turn1 = false;
+      console.log('CARAMBOLA');
+      alert ("CARAMBOLAAAAAAAAAA!!!! BIEN HECHO! VUELVE A TIRAR JUGADOR AMARILLO!");
+      console.log('Puntos P2' + players[1].myPoints);
+
+    }
+    };
 };
 
 
-// CHEQUEAR SI SE HACE CARAMBOLA
-Ball.prototype._checkCarambola = function(ball) {
-  //VERIFICAR QUE SE HACE CARAMBOLA
-  if (turn1 && this.c === 'blue' && ball.c === 'yellow') players[0].hitTheOtherBall = true;
-  if (turn1 && this.c === 'blue' && ball.c === 'white') players[0].hitWhiteBall = true;
-  if (turn1 && this.c === 'blue' && players[0].hitTheOtherBall && players[0].hitWhiteBall) {
-    players[0].myPoints++;
-    turn1 = true;
-    console.log('CARAMBOLA')
-    console.log('Puntos P1' + players[0].myPoints)
-    //alert ("CONTINUA EL JUGADOR AZUL UN DISPARO MAS");
-
-  }
-  if (!turn1 && this.c === 'yellow' && ball.c === 'blue') players[1].hitTheOtherBall = true;
-  if (!turn1 && this.c === 'yellow' && ball.c === 'white') players[1].hitWhiteBall = true;
-  if (!turn1 && this.c === 'yellow' && players[1].hitTheOtherBall && players[1].hitWhiteBall) {
-    players[1].myPoints++;
-    console.log('CARAMBOLA')
-    console.log('Puntos P1' + players[1].myPoints)
-    //alert ("CONTINUA EL JUGADOR 2 UN DISPARO AMARILLO");
-    turn1 = false;
-  }
-}
+// if (!turn1 && this.c === 'yellow' && ball.c === 'blue') players[1].hitTheOtherBall = true;
+// if (!turn1 && this.c === 'yellow' && ball.c === 'white') players[1].hitWhiteBall = true;
+// if (!turn1 && this.c === 'yellow' && players[1].hitTheOtherBall && players[1].hitWhiteBall) {
+// players[1].myPoints++;
+//
+// document.getElementById ("score2").innerHTML = players[1].myPoints;
+// console.log('CARAMBOLA');
+// alert ("CARAMBOLAAAAAAAAAA!!!! BIEN HECHO! VUELVE A TIRAR PLAYER 2!");
+// console.log('Puntos P2' + players[1].myPoints);
+// //alert ("CONTINUA EL JUGADOR 2 UN DISPARO AMARILLO");
+// turn1 = false;
+//
+// }
+// };

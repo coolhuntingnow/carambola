@@ -1,11 +1,13 @@
 //DECLARACION DE VARIABLES GLOBALES
 var Player;
 var Players;
+var played;
 var Table;
 var Ball;
 var MouseHandler;
-var strike = false
-var strikeBall
+var strike = false;
+var strikeFirstime = 1;
+var strikeBall;
 
 //PARA QUE NO CARGUE EL JS SIN QUE SE HAYA CARGADO EL DOM
 window.onload = function() {
@@ -124,32 +126,54 @@ function draw() {
     temp.draw(table); // PINTA LAS BOLAS EN EL TABLERO
   }
 
-  checkTurn()
+
+  checkTurn();
+  checkWinner();
   // MUESTRA EL PALO SIEMPRE QUE PULSEMOS EL RATON
 
+  //PARA QUE AL PRINCIPIO DE LA PARTIDA ME APAREZCA UNA ALERTA DE QUIEN COMIENZA LA PARTIDA
+  if (strikeFirstime===1){
+    alert ("!BIENVENIDOS A CARAMBOLA! EMPIEZA LA PARTIDA EL JUGADOR AZUL");
+    strikeFirstime++;
+  }
   if (mouse.down == true) {
     DrawMouse();
   }
   requestAnimFrame(draw);
 }
 
+
+function checkWinner() {
+  if (players[0].myPoints>=1 || players[1].myPoints>=1){
+  location.href ="https://www.ironhack.com/";
+  //alert ("YOU ARE THE WINNER");
+
+
+}
+}
 function checkTurn(){
 
+  if(turn1) {document.getElementById("ballTurn").innerHTML = "AZUL";} //PARA QUE APAREZCA EN EL MARCADO DE QUIEN ES EL TURNO
   if(balls[0].xVelocity === 0 && balls[0].yVelocity === 0 &&
      balls[1].xVelocity === 0 && balls[1].yVelocity === 0 &&
      balls[2].xVelocity === 0 && balls[2].yVelocity === 0 && strike){
        if(turn1 && strikeBall.c === 'blue'){
           if(!(players[0].hitWhiteBall && players[0].hitTheOtherBall)) {
-            console.log('CBIA TURNO: TURNO DEL 2')
-            turn1 = !turn1
-            strike = false
+            console.log('CBIA TURNO: TURNO DEL 2');
+            alert ("AHORA ES EL TURNO DEL JUGADOR AMARILLO");
+            turn1 = !turn1;
+            strike = false;
           }
-       }else{
+
+       } else {
          if(!turn1 && strikeBall.c === 'yellow' && !(players[1].hitWhiteBall && players[1].hitTheOtherBall)) {
-           console.log('CBIA TURNO: TURNO DEL 1')
-           turn1 = !turn1
-           strike = false
+           console.log('CBIA TURNO: TURNO DEL 1');
+           turn1 = !turn1;
+           strike = false;
+           alert ("AHORA ES EL TURNO DEL JUGADOR AZUL");
          }
        }
+       document.getElementById("ballTurn").innerHTML = "AMARILLO"; //PARA QUE APAREZCA EN EL MARCADO DE QUIEN ES EL TURNO
      }
+
 }
