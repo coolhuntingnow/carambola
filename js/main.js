@@ -5,6 +5,7 @@ var Table;
 var Ball;
 var MouseHandler;
 var strike = false
+var strikeBall
 
 //PARA QUE NO CARGUE EL JS SIN QUE SE HAYA CARGADO EL DOM
 window.onload = function() {
@@ -114,17 +115,16 @@ function Dist(x1, y1, x2, y2) {
 })();
 
 function draw() {
-  var temp
   ctx.clearRect(0, 0, w, h); //BORRA EL CANVAS
   table.draw(); // PINTA EL TABLERO
   for (var i = 0; i < points; i++) {
-    temp = balls[i];
+    var temp = balls[i];
     temp.TestImpact(); //TESTEA CONTINUAMENTE SI LAS BOLAS HAN IMPACTADO
     temp.Update(table); //ACTUALIZA LAS BOLAS EN EL TABLERO
     temp.draw(table); // PINTA LAS BOLAS EN EL TABLERO
   }
 
-  checkTurn(temp)
+  checkTurn()
   // MUESTRA EL PALO SIEMPRE QUE PULSEMOS EL RATON
 
   if (mouse.down == true) {
@@ -133,19 +133,19 @@ function draw() {
   requestAnimFrame(draw);
 }
 
-function checkTurn(temp){
+function checkTurn(){
 
   if(balls[0].xVelocity === 0 && balls[0].yVelocity === 0 &&
      balls[1].xVelocity === 0 && balls[1].yVelocity === 0 &&
      balls[2].xVelocity === 0 && balls[2].yVelocity === 0 && strike){
-       if(turn1 && temp.c === 'blue'){
+       if(turn1 && strikeBall.c === 'blue'){
           if(!(players[0].hitWhiteBall && players[0].hitTheOtherBall)) {
             console.log('CBIA TURNO: TURNO DEL 2')
             turn1 = !turn1
             strike = false
           }
        }else{
-         if(!turn1 && temp.c === 'yellow' && !(players[1].hitWhiteBall && players[1].hitTheOtherBall)) {
+         if(!turn1 && strikeBall.c === 'yellow' && !(players[1].hitWhiteBall && players[1].hitTheOtherBall)) {
            console.log('CBIA TURNO: TURNO DEL 1')
            turn1 = !turn1
            strike = false

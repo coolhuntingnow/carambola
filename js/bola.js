@@ -104,6 +104,7 @@ Ball.prototype.Strike = function(xImpact, yImpact) {
   this.xVelocity += xImpact;
   this.yVelocity += yImpact;
   strike = true
+  strikeBall = this
 };
 
 // CAMBIO DE VELOCIDAD EN LA COLISION DE LAS BOLAS (Caja Negra!!)
@@ -140,9 +141,9 @@ Ball.prototype.TestImpact = function() {
 
     //THIS = BOLA CON LA QUE SE DISPAEA  BALL= BOLA CON LA QUE COLISIONA
     CollideBalls(this, ball);
+    console.log('EN TEST IMPACT: ', this)
 
     this._checkCarambola(ball)
-
   }
 };
 
