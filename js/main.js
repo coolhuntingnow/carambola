@@ -8,7 +8,8 @@ var MouseHandler;
 var strike = false;
 var strikeFirstime = 1;
 var strikeBall;
-var puntosPartida = 2; //DETERMINA LOS PUNTOS QUE SE NECESITAN PARA GANAR EL JUEGO
+var puntosPartida = 1; //DETERMINA LOS PUNTOS QUE SE NECESITAN PARA GANAR EL JUEGO
+var winner = 0;
 
 //PARA QUE NO CARGUE EL JS SIN QUE SE HAYA CARGADO EL DOM
 window.onload = function() {
@@ -136,7 +137,8 @@ function draw() {
 
 
   checkTurn();
-  checkWinner();
+  if (winner===0){checkWinner();}
+
   // MUESTRA EL PALO SIEMPRE QUE PULSEMOS EL RATON
 
   //PARA QUE AL PRINCIPIO DE LA PARTIDA ME APAREZCA UNA ALERTA DE QUIEN COMIENZA LA PARTIDA
@@ -153,12 +155,18 @@ function draw() {
 //CHEQUEA SI ALGUIEN HA GANADO Y LE DERIVA A LA WEB DEL GANADOR DEL JUEGO
 function checkWinner() {
   if (players[0].myPoints>=puntosPartida || players[1].myPoints>=puntosPartida){
+  alert ("AND THE WINNER IS....");
+  if (players[0].myPoints > players[1].myPoints){
+  alert ("!EL JUGADOR " + "AZUL!");}
+//  winner++;
+  else {
+    alert ("!EL JUGADOR " + "AMARILLO!");
+    //  winner++;
+  }
   location.href ="findeljuego.html";
-
-
-
 }
 }
+
 function checkTurn(){
 
   if(turn1) {document.getElementById("ballTurn").innerHTML = "AZUL";} //PARA QUE APAREZCA EN EL MARCADO DE QUIEN ES EL TURNO

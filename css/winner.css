@@ -2,17 +2,25 @@
 
 body{
   background-image: url("../img/fondoIronHack.png");
+  margin: 0px;
+
 }
 iframe {
   text-align: center;
-  margin-top: 200px;
+  margin-top: 125px;
   margin-left: 20%;
   border: none;
 
 }
 .nuevo-juego {
-  text-align: center;
-  margin-top: 100px;
   font-size: 30px;
   color: red;
+
+}
+
+.nuevo-juego-div {
+  text-align: center;
+  margin-top: 100px;
+  padding: 30px;
+  background-color: black;
 }
