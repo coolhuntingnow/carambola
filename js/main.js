@@ -8,6 +8,7 @@ var MouseHandler;
 var strike = false;
 var strikeFirstime = 1;
 var strikeBall;
+var puntosPartida = 2; //DETERMINA LOS PUNTOS QUE SE NECESITAN PARA GANAR EL JUEGO
 
 //PARA QUE NO CARGUE EL JS SIN QUE SE HAYA CARGADO EL DOM
 window.onload = function() {
@@ -142,11 +143,11 @@ function draw() {
   requestAnimFrame(draw);
 }
 
-
+//CHEQUEA SI ALGUIEN HA GANADO Y LE DERIVA A LA WEB DEL GANADOR DEL JUEGO
 function checkWinner() {
-  if (players[0].myPoints>=1 || players[1].myPoints>=1){
-  location.href ="https://www.ironhack.com/";
-  //alert ("YOU ARE THE WINNER");
+  if (players[0].myPoints>=puntosPartida || players[1].myPoints>=puntosPartida){
+  location.href ="findeljuego.html";
+
 
 
 }

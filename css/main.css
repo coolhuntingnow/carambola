@@ -16,18 +16,6 @@ canvas {
   margin-top: 50px;
 }
 
-.container-winner {
-/* background-image: url("../img/fondoIronHack.png"); */
-background-color: black;
-width: 100%;
-height: 100%;
-}
-
-.giphy-embed {
-  text-align: center;
-  margin-top: 200px;
-}
-
 #ballTurn{
   font-size: 22px;
   color: white;

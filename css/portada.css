@@ -1,0 +1,16 @@
+
+body {
+  background-image: url("../img/portada-juego.jpg");
+}
+
+div {
+  /*background-image: url("../img/boton-jugar.jpg");*/
+}
+
+img {
+  width: 300px;
+  height: auto;
+  text-align: center;
+  margin-top: 15%;
+  margin-left: 42.5%
+}

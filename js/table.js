@@ -3,12 +3,12 @@
 //DISEÑO DEL TABLERO
   Table = function(){
     //POSICION DEL TABLERO CON RESPECTO AL VIEWPORT
-    this.xPos = 300;
-    this.yPos = 200;
+    this.xPos = 250;
+    this.yPos = 150;
 
     //TAMAÑO DEL TABLERO CON RESPECTO AL VIEWPORT
-    this.width = 0.4*w;
-    this.height = 0.4*this.width;
+    this.width = 0.6*w;
+    this.height = 0.5*this.width;
 
     //DISEÑO DEL TABLERO
     this.tableColor = "green"
