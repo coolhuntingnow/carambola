@@ -7,7 +7,7 @@
     this.yPos = 150;
 
     //TAMAÑO DEL TABLERO CON RESPECTO AL VIEWPORT
-    this.width = 0.5*w;
+    this.width = 0.6*w;
     this.height = 0.5*this.width;
 
     //DISEÑO DEL TABLERO
