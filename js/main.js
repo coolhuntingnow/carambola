@@ -80,8 +80,8 @@ function DrawMouse() {
   ctx.beginPath();
   ctx.moveTo(mouseDownX, mouseDownY); // EL PALO SE EMPIEZA A PINTAR DESDE DONDE HACEMOS CLICK
   ctx.lineTo(mouse.x, mouse.y); //DIBUJA EL PALO HASTA DONDE ME MUEVA CON EL RATON
-  ctx.strokeStyle = 'brown'; // COLOR DE PALO
-  ctx.lineWidth = 8; // ANCHO DEL PALO
+  ctx.strokeStyle = 'red'; // COLOR DE PALO
+  ctx.lineWidth = 10; // ANCHO DEL PALO
   ctx.stroke();
 
 }
@@ -120,6 +120,13 @@ function Dist(x1, y1, x2, y2) {
 function draw() {
   ctx.clearRect(0, 0, w, h); //BORRA EL CANVAS
   table.draw(); // PINTA EL TABLERO
+
+  // if(turn){
+  //   balls[0].TestImpact()
+  // } else {
+  //   balls[1].TestImpact()
+  // }
+
   for (var i = 0; i < points; i++) {
     var temp = balls[i];
     temp.TestImpact(); //TESTEA CONTINUAMENTE SI LAS BOLAS HAN IMPACTADO
@@ -164,6 +171,7 @@ function checkTurn(){
             alert ("AHORA ES EL TURNO DEL JUGADOR AMARILLO");
             turn1 = !turn1;
             strike = false;
+            document.getElementById("ballTurn").innerHTML = "AMARILLO"
           }
 
        } else {
@@ -172,9 +180,10 @@ function checkTurn(){
            turn1 = !turn1;
            strike = false;
            alert ("AHORA ES EL TURNO DEL JUGADOR AZUL");
+           document.getElementById("ballTurn").innerHTML = "AZUL";
          }
        }
-       document.getElementById("ballTurn").innerHTML = "AMARILLO"; //PARA QUE APAREZCA EN EL MARCADO DE QUIEN ES EL TURNO
+       ; //PARA QUE APAREZCA EN EL MARCADO DE QUIEN ES EL TURNO
      }
 
 }

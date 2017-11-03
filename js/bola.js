@@ -142,52 +142,48 @@ Ball.prototype.TestImpact = function() {
 
     //THIS = BOLA CON LA QUE SE DISPAEA  BALL= BOLA CON LA QUE COLISIONA
     CollideBalls(this, ball);
-    console.log('EN TEST IMPACT: ', this);
 
-     if (!turn1) {
+    if (!turn1) {
       this._checkCarambolaP2(ball);
       break; //PARA QUE NO ANOTE PUNTOS UNA VEZ QUE SE HA HECHO CARAMBOLA
-      }
-    else if (turn1) {
-    this._checkCarambolaP1(ball);
-    break; //PARA QUE NO ANOTE PUNTOS UNA VEZ QUE SE HA HECHO CARAMBOLA
+    } else {
+      this._checkCarambolaP1(ball);
+      break; //PARA QUE NO ANOTE PUNTOS UNA VEZ QUE SE HA HECHO CARAMBOLA
+    }
   }
-}
 
 
-// CHEQUEAR SI SE HACE CARAMBOLA PLAYER 1
-Ball.prototype._checkCarambolaP1 = function(ball) {
-  //VERIFICAR QUE SE HACE CARAMBOLA
-
-  if (turn1 && this.c === 'blue' && ball.c === 'yellow') players[0].hitTheOtherBall = true;
-  if (turn1 && this.c === 'blue' && ball.c === 'white') players[0].hitWhiteBall = true;
-  if (turn1 && this.c === 'blue' && players[0].hitTheOtherBall && players[0].hitWhiteBall && played) {
-    players[0].myPoints+=1; //SUMA PUNTOS CON LAS CARAMBOLAS
-    document.getElementById("score1").innerHTML = players[0].myPoints;
-    turn1 = true;
-    console.log('CARAMBOLA');
-    alert ("CARAMBOLAAAAAAAAAA!!!! BIEN HECHO! VUELVE A TIRAR JUGADOR AZUL!");
-    console.log('Puntos P1' + players[0].myPoints);
-    played = false;
-  }
+  // CHEQUEAR SI SE HACE CARAMBOLA PLAYER 1
+  Ball.prototype._checkCarambolaP1 = function(ball) {
+    //VERIFICAR QUE SE HACE CARAMBOLA
+    if (turn1 && this.c === 'blue' && ball.c === 'yellow') players[0].hitTheOtherBall = true;
+    if (turn1 && this.c === 'blue' && ball.c === 'white') players[0].hitWhiteBall = true;
+    if (turn1 && this.c === 'blue' && players[0].hitTheOtherBall && players[0].hitWhiteBall && played) {
+      players[0].myPoints += 1; //SUMA PUNTOS CON LAS CARAMBOLAS
+      document.getElementById("score1").innerHTML = players[0].myPoints;
+      turn1 = true;
+      console.log('CARAMBOLA');
+      alert("CARAMBOLAAAAAAAAAA!!!! BIEN HECHO! VUELVE A TIRAR JUGADOR AZUL!");
+      console.log('Puntos P1' + players[0].myPoints);
+      played = false;
+    }
   };
 
   // CHEQUEAR SI SE HACE CARAMBOLA PLAYER 2
   Ball.prototype._checkCarambolaP2 = function(ball) {
-
     //VERIFICAR QUE SE HACE CARAMBOLA
-    if (!turn1 && this.c === 'yellow' && ball.c === 'blue') players[1].hitTheOtherBall = true;
-    if (!turn1 && this.c === 'yellow' && ball.c === 'white') players[1].hitWhiteBall = true;
-    if (!turn1 && this.c === 'yellow' && players[1].hitTheOtherBall && players[1].hitWhiteBall) {
+    if (!turn1 && ((this.c === 'yellow' && ball.c === 'blue') || (this.c === 'blue' && ball.c === 'yellow'))) players[1].hitTheOtherBall = true;
+    if (!turn1 && ((this.c === 'yellow' && ball.c === 'white') || (this.c === 'white' && ball.c === 'yellow'))) players[1].hitWhiteBall = true;
+    if (!turn1 && players[1].hitTheOtherBall && players[1].hitWhiteBall && played) {
       players[1].myPoints++; //SUMA PUNTOS CON LAS CARAMBOLAS
       document.getElementById("score2").innerHTML = players[1].myPoints;
       turn1 = false;
       console.log('CARAMBOLA');
-      alert ("CARAMBOLAAAAAAAAAA!!!! BIEN HECHO! VUELVE A TIRAR JUGADOR AMARILLO!");
+      alert("CARAMBOLAAAAAAAAAA!!!! BIEN HECHO! VUELVE A TIRAR JUGADOR AMARILLO!");
       console.log('Puntos P2' + players[1].myPoints);
-
+      played = false;
     }
-    };
+  };
 };
 
 

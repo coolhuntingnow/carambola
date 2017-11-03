@@ -7,7 +7,7 @@
     this.yPos = 150;
 
     //TAMAÑO DEL TABLERO CON RESPECTO AL VIEWPORT
-    this.width = 0.6*w;
+    this.width = 0.3*w;
     this.height = 0.5*this.width;
 
     //DISEÑO DEL TABLERO
@@ -36,13 +36,13 @@
     ctx.closePath();
     ctx.lineWidth = this.border;
 
-    ctx.globalAlpha = 0.3; //CAMBIA LA TRANSPARENCIA DEL TABLERO
+    ctx.globalAlpha = 0.9; //CAMBIA LA TRANSPARENCIA DEL TABLERO
     ctx.strokeStyle = this.borderColor;
     ctx.stroke();
 
     // DIBUJO DE LA CAJA DE REBOTE
     ctx.beginPath();
-    ctx.globalAlpha = 0.7; //CAMBIAR EL COLOR DEL TAPETE
+    ctx.globalAlpha = 0.9; //CAMBIAR EL COLOR DEL TAPETE
     ctx.moveTo(this.xPos, this.yPos);
     ctx.lineTo(this.xPos + this.width, this.yPos);
     ctx.lineTo(this.xPos + this.width, this.yPos + this.height);
